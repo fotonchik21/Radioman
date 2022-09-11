@@ -37,8 +37,7 @@ public class Radio {
     public void setIncreaseVolume() {
         if (currentVolume < 10) {
             this.currentVolume++;
-        }
-        if (currentVolume > 10) {
+        } else {
             this.currentVolume = currentVolume;
         }
     }

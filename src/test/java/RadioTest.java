@@ -128,6 +128,7 @@ public class RadioTest {
         volume.setIncreaseVolume();
         volume.setIncreaseVolume();
         volume.setIncreaseVolume();
+        volume.setIncreaseVolume();
         byte expected = 10;
         byte actual = volume.getCurrentVolume();
         Assertions.assertEquals(expected, actual);

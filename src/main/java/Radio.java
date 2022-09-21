@@ -5,7 +5,6 @@ public class Radio {
 
     private byte amountPossibleStations = 10;
 
-    private final int maxVolume = 100;
 
     public Radio() {
     }
@@ -46,11 +45,11 @@ public class Radio {
     }
 
     public int getCurrentVolume() {
-        return this.currentVolume = maxVolume;
+        return currentVolume;
     }
 
     public void setIncreaseVolume() {
-        if (currentVolume <= 100) {
+        if (currentVolume < 100) {
             this.currentVolume++;
         } else {
             this.currentVolume = currentVolume;

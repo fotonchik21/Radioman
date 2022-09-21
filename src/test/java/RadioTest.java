@@ -8,9 +8,9 @@ import org.junit.jupiter.params.provider.CsvSource;
 public class RadioTest {
 
     @ParameterizedTest
-    @CsvSource({"127, 0", "-2, 0"})
+    @CsvSource({"30, 0", "-2, 0"})
     public void shouldBeInLimitsStations(byte radioStation, byte expected) {
-        Radio radio = new Radio();
+        Radio radio = new Radio((byte) 30);
         radio.setCurrentRadioStation(radioStation);
         byte actual = radio.getCurrentRadioStation();
         Assertions.assertEquals(expected, actual);
@@ -81,11 +81,9 @@ public class RadioTest {
 
     @Test
     public void shouldDecreaseVolume() {
-        Radio volume = new Radio();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
+        Radio volume = new Radio(95);
         volume.setDecreaseVolume();
-        byte expected = 1;
+        byte expected = 94;
         int actual = volume.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
     }
@@ -106,7 +104,8 @@ public class RadioTest {
     }
     @Test
     public void overMaxVolume() {
-        Radio volume = new Radio(101);
+        Radio volume = new Radio(100);
+        volume.setIncreaseVolume();
         byte expected = 100;
         int actual = volume.getCurrentVolume();
         Assertions.assertEquals(expected, actual);

@@ -18,9 +18,9 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldBeZeroIfStationNineWithNext() {
-        Radio radio = new Radio();
-        byte radioStation = 9;
+    public void shouldBeZeroIfStationMaxWithNext() {
+        Radio radio = new Radio((byte) 100);
+        byte radioStation = 99;
         radio.setCurrentRadioStation(radioStation);
         byte expected = 0;
         radio.setNextRadioStation();
@@ -29,11 +29,11 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldBeNineIfZeroWithPrev() {
-        Radio radio = new Radio();
+    public void shouldBeMaxIfZeroWithPrev() {
+        Radio radio = new Radio((byte) 100);
         byte radioStation = 0;
         radio.setCurrentRadioStation(radioStation);
-        byte expected = 9;
+        byte expected = 99;
         radio.setPreviousRadioStation();
         byte actual = radio.getCurrentRadioStation();
         Assertions.assertEquals(expected, actual);
@@ -75,7 +75,7 @@ public class RadioTest {
         Radio volume = new Radio();
         volume.setIncreaseVolume();
         byte expected = 1;
-        byte actual = volume.getCurrentVolume();
+        int actual = volume.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
     }
 
@@ -86,7 +86,7 @@ public class RadioTest {
         volume.setIncreaseVolume();
         volume.setDecreaseVolume();
         byte expected = 1;
-        byte actual = volume.getCurrentVolume();
+        int actual = volume.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
     }
     @Test
@@ -94,43 +94,21 @@ public class RadioTest {
         Radio volume = new Radio();
         volume.setDecreaseVolume();
         byte expected = 0;
-        byte actual = volume.getCurrentVolume();
+        int actual = volume.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
     }
     @Test
     public void maxVolume() {
-        Radio volume = new Radio();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        byte expected = 10;
-        byte actual = volume.getCurrentVolume();
+        Radio volume = new Radio(100);
+        byte expected = 100;
+        int actual = volume.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
     }
     @Test
     public void overMaxVolume() {
-        Radio volume = new Radio();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        volume.setIncreaseVolume();
-        byte expected = 10;
-        byte actual = volume.getCurrentVolume();
+        Radio volume = new Radio(101);
+        byte expected = 100;
+        int actual = volume.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
     }
 
